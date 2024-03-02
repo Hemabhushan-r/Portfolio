@@ -3,21 +3,14 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Welcome from "../components/Welcome";
 import BottomNavBar from "../components/BottomNavBar";
+import { motion } from "framer-motion";
 import "./styles.css";
 import { useEffect, useState } from "react";
 import { onValue, ref } from "firebase/database";
 import { db } from "../utils/firebaseConfig";
+import MotionHLine from "../components/MotionHLine";
 
 const Home = () => {
-  const [skills, setSkills] = useState([]);
-  useEffect(() => {
-    const query = ref(db, "/");
-    return onValue(query, (snapshot) => {
-      const data = snapshot.val();
-      setSkills(data["skills"]);
-      console.log(data);
-    });
-  }, []);
   return (
     <div
       style={{
@@ -28,8 +21,12 @@ const Home = () => {
       }}
     >
       <Welcome />
+      <MotionHLine />
+
       <AboutMe />
-      <Skills skills={skills} />
+      <MotionHLine />
+      <Skills />
+      <MotionHLine />
       <Projects />
       <BottomNavBar />
     </div>

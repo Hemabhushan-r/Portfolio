@@ -4,7 +4,16 @@ import githubimg from "../assets/images/download.jpg";
 import githubgif from "../assets/images/github.gif";
 import { useEffect, useRef, useState } from "react";
 
-const ProjectCard = () => {
+const ProjectCard = ({
+  title,
+  description,
+  gifUrl,
+  imageUrl,
+  otherUrls,
+  skill,
+}) => {
+  /* description : "" gifUrl : "" imageUrl : "" otherUrls : "" skill : ""
+        title : ""  */
   const cardRef = useRef();
   const [val, setVal] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
@@ -15,7 +24,7 @@ const ProjectCard = () => {
     const rect = cardRef.current.getBoundingClientRect();
     mouseX.set(rect.left + rect.width / 2);
     mouseY.set(rect.top + rect.height / 2);
-    setImgUrl(githubimg);
+    setImgUrl(imageUrl);
   }, []);
 
   const sensitivity = 20;
@@ -35,17 +44,17 @@ const ProjectCard = () => {
     if (!cardRef.current) return 0;
     const rect = cardRef.current.getBoundingClientRect();
     const newRotateX = newMouseY - rect.top - rect.height / 2;
-    console.log("rotateX", `${(newRotateX / rect.height) * sensitivity}deg`);
+    //console.log("rotateX", `${(newRotateX / rect.height) * sensitivity}deg`);
     return `${(newRotateX / rect.height) * sensitivity}deg`;
   });
   const rotateY = useTransform(mouseX, (newMouseX) => {
     if (!cardRef.current) return 0;
     const rect = cardRef.current.getBoundingClientRect();
     const newRotateY = newMouseX - rect.left - rect.width / 2;
-    console.log(
-      "rotateY",
-      `${(newRotateY / rect.width) * sensitivity * -1}deg`
-    );
+    // console.log(
+    //   "rotateY",
+    //   `${(newRotateY / rect.width) * sensitivity * -1}deg`
+    // );
     return `${(newRotateY / rect.width) * sensitivity * -1}deg`;
   });
 
@@ -64,15 +73,15 @@ const ProjectCard = () => {
           animate(mouseY, rect.top + rect.height / 2);
         }}
         onHoverStart={() => {
-          setImgUrl(githubgif);
+          setImgUrl(gifUrl);
         }}
         onHoverEnd={() => {
-          setImgUrl(githubimg);
+          setImgUrl(imageUrl);
         }}
         whileHover={{ scale: 1.01 }}
         style={{
           width: "20em",
-          background: "rgba(20, 96, 255, 0.5)",
+          background: "rgba(20, 96, 255, 0.7)",
           transformStyle: "preserve-3d",
           rotateX,
           rotateY,
@@ -88,14 +97,11 @@ const ProjectCard = () => {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" className="btn btn-primary">
+          <h5 className="card-title">{title}</h5>
+          <p className="card-text">{description}</p>
+          {/* <a href={otherUrls} className="btn btn-primary">
             Go somewhere
-          </a>
+          </a> */}
         </div>
       </motion.div>
     </>

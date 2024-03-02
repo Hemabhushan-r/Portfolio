@@ -1,12 +1,16 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
-import { Link, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
+import { useEffect } from "react";
 
 ///
 
 function App() {
+  useEffect(() => {
+    document.title = "R Hema Bhushan's Portfolio";
+  }, []);
   return (
     <div>
       <NavBar />

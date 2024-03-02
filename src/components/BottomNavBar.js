@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "./navbar.css";
 const BottomNavBar = () => {
   return (
     <>
       <div
+        id="contact"
         className="rounded-4 mt-4 container shadow-lg"
         style={{ backgroundColor: "rgba(20, 96, 255, 0.4)" }}
       >
@@ -48,7 +49,7 @@ const BottomNavBar = () => {
             </div>
             <div className="col-lg-6 col-12 d-lg-flex justify-content-end">
               <ul className="list-unstyled">
-                <li className="mb-2">
+                <li className="mb-2 text-end">
                   <a
                     target="_blank"
                     rel="noreferrer"
@@ -62,8 +63,14 @@ const BottomNavBar = () => {
                     size="xl"
                   />
                 </li>
-                <li className="mb-2">
-                  GitHub{" "}
+                <li className="mb-2 text-end">
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://github.com/Hemabhushan-r"
+                  >
+                    GitHub
+                  </a>{" "}
                   <FontAwesomeIcon
                     className="mx-1"
                     icon={icon({ name: "github", style: "brands" })}

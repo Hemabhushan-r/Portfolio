@@ -1,42 +1,24 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { onValue, ref } from "firebase/database";
+import { db } from "../utils/firebaseConfig";
 import Skill from "./Skill";
+import SectionHeader from "./SectionHeader";
 
-const Skills = ({ skills }) => {
-  // const [skills, setSkills] = useState([]);
-
-  // useEffect(() => {
-  //   setSkills([
-  //     {
-  //       imgUrl:
-  //         "https://cdn1.iconfinder.com/data/icons/education-set-3-3/74/15-512.png",
-  //       skill: "React",
-  //     },
-  //     {
-  //       imgUrl:
-  //         "https://seeklogo.com/images/F/flutter-logo-5086DD11C5-seeklogo.com.png",
-  //       skill: "Flutter",
-  //     },
-  //   ]);
-  // }, []);
+const Skills = () => {
+  const [skills, setSkills] = useState([]);
+  useEffect(() => {
+    const query = ref(db, "/");
+    return onValue(query, (snapshot) => {
+      const data = snapshot.val();
+      setSkills(data["skills"]);
+      //console.log(data);
+    });
+  }, []);
   return (
     <>
-      <div className="m-3 p-2">
-        <motion.div
-          initial={{ rotateY: 0 }}
-          whileInView={{ rotateY: 18, scale: 1.05 }}
-          transition={{ delay: 0.2, duration: 1 }}
-          style={{
-            backgroundColor: "rgba(20, 96, 255, 0.3)",
-            transformStyle: "preserve-3d",
-            transformPerspective: "1000px",
-            maxWidth: "16em",
-            backdropFilter: "blur(8px)",
-          }}
-          className="my-3 p-2 rounded-2 shadow-lg"
-        >
-          <h1>Skills</h1>
-        </motion.div>
+      <div id="skills" className="m-3 pb-3">
+        <SectionHeader sectionheader={"Skills"} maxW={"16em"} />
         <div>
           {skills.length === 0 ? (
             <div className="spinner-border" role="status">

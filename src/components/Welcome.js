@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import TypingText from "./TypingText";
+import SectionHeader from "./SectionHeader";
 
 const Welcome = () => {
   return (
@@ -12,21 +13,7 @@ const Welcome = () => {
       style={{ paddingTop: "7em" }}
     >
       <div className="m-3 p-2">
-        <motion.div
-          initial={{ rotateY: 0 }}
-          animate={{ rotateY: 18, scale: 1.05 }}
-          transition={{ delay: 0.2, duration: 1.2 }}
-          style={{
-            backgroundColor: "rgba(20, 96, 255, 0.3)",
-            transformStyle: "preserve-3d",
-            transformPerspective: "1000px",
-            maxWidth: "30em",
-            backdropFilter: "blur(8px)",
-          }}
-          className="my-2 p-2 rounded-2 shadow-lg"
-        >
-          <h1>Hi, I'm Hema Bhushan</h1>
-        </motion.div>
+        <SectionHeader sectionheader={"Hi, I'm Hema Bhushan"} maxW={"30em"} />
 
         <h3>
           <TypingText

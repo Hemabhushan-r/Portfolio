@@ -1,9 +1,26 @@
 import { motion, useMotionValue } from "framer-motion";
+import { useState, useEffect } from "react";
 
 import react from "../assets/images/react.png";
 const Skill = ({ imageUrl, skill }) => {
+  const [isTranslated, setIsTranslated] = useState(false);
+
+  useEffect(() => {
+    if (!isTranslated) {
+      setIsTranslated(true);
+    }
+  }, [isTranslated]);
+
+  const translateVariants = {
+    initial: { translateY: -3 },
+    animate: { translateY: 0 },
+  };
   return (
     <motion.div
+      // variants={translateVariants}
+      // animate={isTranslated ? "animate" : "initial"}
+      animate={{ y: [-25, 0], opacity: [0.2, 1] }}
+      transition={{ y: { duration: 1.4 }, opacity: { duration: 1.4 } }}
       whileHover={{ scale: 1.1, translateZ: "180px" }}
       className="d-inline-block mx-3"
       style={{
